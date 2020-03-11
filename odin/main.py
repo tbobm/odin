@@ -1,62 +1,26 @@
 """Monitor infrastructure."""
 import typing
 
-import requests
-
-from odin import conf, logger
-
-
-def _perform_call(url: str) -> typing.Union[requests.Response, bool]:
-    try:
-        logger.debug(
-            "should have been using a timeout of %s",
-            conf.REQUEST_DEFAULT_TIMEOUT,
-        )
-        return requests.get(url)
-    except requests.exceptions.BaseHTTPError:
-        return False
+from odin import conf, logger, export
+from odin import http_utils
 
 
-def perform_call(url: str) -> dict:
-    """Perform the HTTP call and format output.
-
-    .. code::javascript
-        {
-            "error": false,
-            "http_code": 200,
-            "duration": 1555, // response time in ms
-        }
-    """
-    result = dict()
-    response = _perform_call(url)
-    if result is False:
-        result["error"] = True
-        result["http_code"] = None
-        # TODO: wrap _perform_call with a timer
-        result["duration"] = 0
-    else:
-        result["error"] = False
-        result["http_code"] = response.status_code
-        result["duration"] = 0
-    return result
-
-
-def check(urls: typing.List[str]):
-    """Perform HTTP calls on target urls."""
-    for idx, url in enumerate(urls, 1):
-        result = perform_call(url)
-        logger.info("idx=%s url=%s result=%r", idx, url, result)
-    # TODO: yield results for further processing
-
-
-def process():
+def process() -> typing.Generator[typing.Tuple[dict, str], None, None]:
     """Main loop."""
-    check(conf.TARGETS)
+
+    for idx, url in enumerate(conf.TARGETS, 1):
+        result = http_utils.contact_url(url)
+        logger.info("idx=%s url=%s result=%r", idx, url, result)
+        yield result, url
     # TODO: fetch results
     # TODO: implement result processing
 
 
 def run():
     """Loop-based program."""
+    logger.info("starting up odin.")
+    exporter = export.setup_prometheus_exporter()
+    export.start_prometheus_exporter()
     while True:
-        process()
+        for result, target in process():
+            exporter.labels(url=target, method='GET').set(result["error"])
