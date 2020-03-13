@@ -2,18 +2,16 @@
 import typing
 
 from odin import conf, logger, export
-from odin import http_utils
+from odin import http_utils, utils
 
 
 def process() -> typing.Generator[typing.Tuple[dict, str], None, None]:
     """Main loop."""
-
-    for idx, url in enumerate(conf.TARGETS, 1):
+    targets = utils.get_targets(conf.CONFIG_LOCATION)
+    for idx, url in enumerate(targets, 1):
         result = http_utils.contact_url(url)
         logger.info("idx=%s url=%s result=%r", idx, url, result)
         yield result, url
-    # TODO: fetch results
-    # TODO: implement result processing
 
 
 def run():

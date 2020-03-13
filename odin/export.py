@@ -7,7 +7,7 @@ def setup_prometheus_exporter() -> Gauge:
 
     unreachability_gauge = Gauge(
         'odin_target_unreachable',
-        '1 if odin can reach the target 0 otherwise',
+        '0 if odin can reach the target 1 otherwise',
         ['url', 'method'],
     )
 

@@ -1,3 +1,4 @@
+"""HTTP-related functions and wrappers."""
 import time
 import typing
 
