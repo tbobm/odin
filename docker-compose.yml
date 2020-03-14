@@ -6,3 +6,9 @@ services:
     image: "massardtheo/odin:latest"
     ports:
       - "8000:8000"
+  prom:
+    image: "prom/prometheus:v2.16.0"
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml:ro"
