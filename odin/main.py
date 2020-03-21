@@ -1,4 +1,5 @@
 """Monitor infrastructure."""
+import time
 import typing
 
 from odin import conf, logger, export
@@ -22,3 +23,4 @@ def run():
     while True:
         for result, target in process():
             exporter.labels(url=target, method='GET').set(result["error"])
+        time.sleep(conf.SLEEPY_DURATION)
