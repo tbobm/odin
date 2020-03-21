@@ -4,8 +4,6 @@ version: '3'
 services:
   odin:
     image: "massardtheo/odin:latest"
-    ports:
-      - "8000:8000"
   prom:
     image: "prom/prometheus:v2.16.0"
     ports:

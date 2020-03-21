@@ -14,4 +14,6 @@ COPY ./ .
 # Install package
 RUN python setup.py install
 
+EXPOSE 8000
+
 ENTRYPOINT ["sh", "-c", "odin"]
