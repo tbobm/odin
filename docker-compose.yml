@@ -18,3 +18,4 @@ services:
       - "3000:3000"
     volumes:
       - "./grafana/:/etc/grafana/provisioning/"
+      - "./grafana.ini:/etc/grafana/grafana.ini:ro"
