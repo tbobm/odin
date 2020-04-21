@@ -16,8 +16,10 @@ def _perform_call(url: str) -> typing.Union[requests.Response, bool]:
         # NOTE: configure request
         #       - different HTTP methods
         #       - authentication
-        return requests.get(url, timeout=conf.HTTP_TIMEOUT)
-    except requests.exceptions.BaseHTTPError as http_error:
+        response = requests.get(url, timeout=conf.HTTP_TIMEOUT)
+        response.raise_for_status()
+        return response
+    except (requests.exceptions.BaseHTTPError, requests.exceptions.HTTPError) as http_error:
         logger.error(
             "could not reach url=%s reason=%r",
             url,
