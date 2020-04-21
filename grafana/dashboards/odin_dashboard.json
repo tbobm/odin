@@ -1,170 +1,273 @@
 {
-    "annotations": {
-        "list": [
-            {
-                "builtIn": 1,
-                "datasource": "-- Grafana --",
-                "enable": true,
-                "hide": true,
-                "iconColor": "rgba(0, 211, 255, 1)",
-                "name": "Annotations & Alerts",
-                "type": "dashboard"
-            }
-        ]
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Silly infrastructure monitoring",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "content": "\n# Odin\n\nThis website aims to provide insights about ETNA's infrastucture, such as availability or the response time.\n\n## Tools\n\n[isetnadown.com](https://isetnadown.com) leverages the following open-source solutions:\n- [Grafana](https://grafana.com/)\n- [Prometheus](prometheus.io/)\n- [Docker](https://www.docker.com/)\n- [Odin](https://github.com/tbobm/odin)\n\n## Contributing\n\nIf you have any idea or recommendation, please feel free to create an issue in [odin](https://github.com/tbobm/odin/issues/new).\n\n## Charts\n\nEvery visualisation _should_ have a matching tooltip explaining the purpose of the chart and a brief description of the data gathering process.\nYou can read those informations by hovering over the little _i_ on the top-left corner of the chart.\n\n### Target unreachability\n\nEvery N second, try to reach the **target** by performing an HTTP call using the corresponding **method**.\n\n- If the server takes longer than X seconds to start answering, we consider it as \"unreachable\" (**1**). This metric does not take the response duration in account, only *the time the server takes to start sending back some bytes*.\n- If the server takes less than X seconds to answer, we consider it as \"reachable\" (**0**)\n\n## Special thanks\n\n- Many thanks to Louis for the domain name isetnadown.com \n",
+      "datasource": null,
+      "description": "Brief description of the project.",
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "mode": "markdown",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Welcome !",
+      "type": "text"
     },
-    "description": "Silly infrastructure monitoring",
-    "editable": true,
-    "gnetId": null,
-    "graphTooltip": 0,
-    "links": [],
-    "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "Metric collected using the following method:\n> An HTTP call is performed every N seconds. If the remote host takes longer than X seconds to send some bytes back, we consider it as unresponsive. This sets the metric value to `1`.\n\n---\nValues:\n\n- If a method/URL has a value of `1`, Odin can not reach the target.\n- If a method/URL has a value of `0`, Odin managed to reach the target.",
+      "fill": 2,
+      "fillGradient": 5,
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 5,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
         {
-            "content": "\n# Odin\n\nThis website aims to provide insights about ETNA's infrastucture, such as availability or the response time.\n\n## Tools\n\n[isetnadown.com](https://isetnadown.com) leverages the following open-source solutions:\n- [Grafana](https://grafana.com/)\n- [Prometheus](prometheus.io/)\n- [Docker](https://www.docker.com/)\n- [Odin](https://github.com/tbobm/odin)\n\n## Contributing\n\nIf you have any idea or recommendation, please feel free to create an issue in [odin](https://github.com/tbobm/odin/issues/new).\n\n## Charts\n\nEvery visualisation _should_ have a matching tooltip explaining the purpose of the chart and a brief description of the data gathering process.\nYou can read those informations by hovering over the little _i_ on the top-left corner of the chart.\n\n### Target unreachability\n\nEvery N second, try to reach the **target** by performing an HTTP call using the corresponding **method**.\n\n- If the server takes longer than X seconds to start answering, we consider it as \"unreachable\" (**1**). This metric does not take the response duration in account, only *the time the server takes to start sending back some bytes*.\n- If the server takes less than X seconds to answer, we consider it as \"reachable\" (**0**)\n\n\n",
-            "datasource": null,
-            "description": "Brief description of the project.",
-            "gridPos": {
-                "h": 5,
-                "w": 24,
-                "x": 0,
-                "y": 0
-            },
-            "id": 4,
-            "mode": "markdown",
-            "options": {},
-            "timeFrom": null,
-            "timeShift": null,
-            "title": "Welcome !",
-            "type": "text"
+          "expr": "odin_target_unreachable",
+          "legendFormat": "{{ method  }} {{ url  }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": null,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "URL unreachability",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "Unreachable",
+          "logBase": 1,
+          "max": "1",
+          "min": "0",
+          "show": true
         },
         {
-            "aliasColors": {},
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
-            "datasource": null,
-            "description": "Metric collected using the following method:\n> An HTTP call is performed every N seconds. If the remote host takes longer than X seconds to send some bytes back, we consider it as unresponsive. This sets the metric value to `1`.\n\n---\nValues:\n\n- If a method/URL has a value of `1`, Odin can not reach the target.\n- If a method/URL has a value of `0`, Odin managed to reach the target.",
-            "fill": 1,
-            "fillGradient": 0,
-            "gridPos": {
-                "h": 6,
-                "w": 24,
-                "x": 0,
-                "y": 5
-            },
-            "hiddenSeries": false,
-            "id": 2,
-            "legend": {
-                "avg": false,
-                "current": false,
-                "max": false,
-                "min": false,
-                "show": true,
-                "total": false,
-                "values": false
-            },
-            "lines": true,
-            "linewidth": 1,
-            "nullPointMode": "null",
-            "options": {
-                "dataLinks": []
-            },
-            "percentage": false,
-            "pointradius": 2,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
-            "targets": [
-                {
-                    "expr": "odin_target_unreachable",
-                    "legendFormat": "{{ method  }} {{ url  }}",
-                    "refId": "A"
-                }
-            ],
-            "thresholds": [
-                {
-                    "colorMode": "critical",
-                    "fill": true,
-                    "line": true,
-                    "op": "gt",
-                    "value": null
-                }
-            ],
-            "timeFrom": null,
-            "timeRegions": [],
-            "timeShift": null,
-            "title": "URL unreachability",
-            "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-            },
-            "type": "graph",
-            "xaxis": {
-                "buckets": null,
-                "mode": "time",
-                "name": null,
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "decimals": 0,
-                    "format": "short",
-                    "label": "",
-                    "logBase": 1,
-                    "max": "1",
-                    "min": "0",
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "label": null,
-                    "logBase": 1,
-                    "max": null,
-                    "min": null,
-                    "show": true
-                }
-            ],
-            "yaxis": {
-                "align": false,
-                "alignLevel": null
-            }
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
         }
-    ],
-    "refresh": "30s",
-    "schemaVersion": 22,
-    "style": "dark",
-    "tags": [
-        "monitoring"
-    ],
-    "templating": {
-        "list": []
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
-    "time": {
-        "from": "now-15m",
-        "to": "now"
-    },
-    "timepicker": {
-        "hidden": false,
-        "nowDelay": "1m",
-        "refresh_intervals": [
-            "5s",
-            "10s",
-            "30s",
-            "1m",
-            "5m",
-            "15m",
-            "30m",
-            "1h",
-            "2h",
-            "1d"
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "Duration in second of the corresponding HTTP request (method, URL)",
+      "fill": 2,
+      "fillGradient": 5,
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 5,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": [
+          {
+            "title": "",
+            "url": ""
+          },
+          {
+            "title": "",
+            "url": ""
+          }
         ]
-    },
-    "timezone": "browser",
-    "title": "Odin",
-    "uid": "CkZUaTuWk",
-    "version": 1
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "odin_http_call_duration",
+          "legendFormat": "{{ method  }} {{ url  }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Request duration",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "short",
+          "label": "HTTP request duration",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": 1
+      }
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [
+    "monitoring"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false,
+    "nowDelay": "1m",
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "Odin",
+  "uid": "CkZUaTuWk",
+  "version": 1
 }

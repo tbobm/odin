@@ -6,7 +6,7 @@ from odin import conf, logger, export
 from odin import http_utils, utils
 
 
-def process() -> typing.Generator[typing.Tuple[dict, str], None, None]:
+def process() -> typing.Generator[typing.Tuple[http_utils.HTTPResult, str], None, None]:
     """Main loop."""
     targets = utils.get_targets(conf.CONFIG_LOCATION)
     for idx, url in enumerate(targets, 1):
@@ -18,9 +18,10 @@ def process() -> typing.Generator[typing.Tuple[dict, str], None, None]:
 def run():
     """Loop-based program."""
     logger.info("starting up odin.")
-    exporter = export.setup_prometheus_exporter()
+    reachability, response_time_gauge = export.setup_prometheus_exporters()
     export.start_prometheus_exporter()
     while True:
         for result, target in process():
-            exporter.labels(url=target, method='GET').set(result["error"])
+            reachability.labels(url=target, method='GET').set(result.error)
+            response_time_gauge.labels(url=target, method='GET').set(result.duration)
         time.sleep(conf.SLEEPY_DURATION)
