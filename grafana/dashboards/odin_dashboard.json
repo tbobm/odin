@@ -24,8 +24,8 @@
       "datasource": null,
       "description": "Brief description of the project.",
       "gridPos": {
-        "h": 6,
-        "w": 24,
+        "h": 7,
+        "w": 14,
         "x": 0,
         "y": 0
       },
@@ -35,6 +35,25 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Welcome !",
+      "type": "text"
+    },
+    {
+      "cacheTimeout": null,
+      "content": "# Like isetnadown.com?\n\n## Donate\n\n[isetnadown.com](https://isetnadown.com) is **public** and **free** service provided by some students of [ETNA](https://etna.io/).\n\nFeel free to buy me a coffee at [buymeacoff.ee/tbobm](https://buymeacoff.ee/tbobm).\n\n## Support\n\nYou can also star [odin](https://github.com/tbobm/odin) to show support and set yourself as a watcher for future releases on github !\n",
+      "datasource": null,
+      "gridPos": {
+        "h": 7,
+        "w": 10,
+        "x": 14,
+        "y": 0
+      },
+      "id": 7,
+      "links": [],
+      "mode": "markdown",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Support isetnadown",
       "type": "text"
     },
     {
@@ -50,7 +69,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 6
+        "y": 7
       },
       "hiddenSeries": false,
       "id": 2,
@@ -148,7 +167,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 13
       },
       "hiddenSeries": false,
       "id": 5,
