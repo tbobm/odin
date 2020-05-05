@@ -19,6 +19,6 @@ def setup_prometheus_exporters() -> typing.Tuple[Gauge, Gauge]:
     return unreachability_gauge, request_duration
 
 
-def start_prometheus_exporter():
+def start_prometheus_exporter() -> None:
     """Run the prometheus server."""
     start_http_server(8000)

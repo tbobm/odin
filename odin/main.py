@@ -15,7 +15,7 @@ def process() -> typing.Generator[typing.Tuple[http_utils.HTTPResult, str], None
         yield result, url
 
 
-def run():
+def run() -> None:
     """Loop-based program."""
     logger.info("starting up odin.")
     reachability, response_time_gauge = export.setup_prometheus_exporters()
