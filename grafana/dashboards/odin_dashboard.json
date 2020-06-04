@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "iteration": 1591263071672,
   "links": [],
   "panels": [
     {
@@ -254,6 +254,71 @@
         "align": false,
         "alignLevel": 1
       }
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 9,
+      "maxPerRow": 4,
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 90
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "6.6.2",
+      "repeat": null,
+      "repeatDirection": "h",
+      "scopedVars": {
+        "_url": {
+          "selected": true,
+          "text": "https://intra.etna-alternance.net",
+          "value": "https://intra.etna-alternance.net"
+        }
+      },
+      "targets": [
+        {
+          "expr": "100 - avg_over_time(odin_target_unreachable[$__interval])*100",
+          "legendFormat": "{{ url }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Target uptimes",
+      "type": "gauge"
     }
   ],
   "refresh": "30s",
@@ -266,8 +331,8 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
-    "to": "now"
+    "from": "now-5m",
+    "to": "now-1m"
   },
   "timepicker": {
     "hidden": false,
