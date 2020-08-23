@@ -4,6 +4,7 @@ version: '3'
 services:
   odin:
     image: "massardtheo/odin:latest"
+    restart: "on-failure"
     environment:
       ODIN_SLEEP_DURATION: 20
   prom:
