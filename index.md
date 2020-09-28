@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+## Welcome to IsEtnaDown.com
 
-You can use the [editor on GitHub](https://github.com/tbobm/odin/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+[isetnadown.com](https://isetnadown.com) is a website which aims to provide easy monitoring and observability for [ETNA](https://etna.io)'s services.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+It was a simple project answering to this question: "is the intranet down for you too?"
 
-### Markdown
+### The situation
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+As you might have noticed, the grafana interface providing insights about the uptime of the differents services has been down since the 25th of September 2020.
 
-```markdown
-Syntax highlighted code block
+I happened to run out of credits, and do not wish to pay real money for this server.
 
-# Header 1
-## Header 2
-### Header 3
+I enjoyed putting this up, and it looks like some people liked the idea of a third-party monitoring service for our school.
 
-- Bulleted
-- List
+## Thanks
 
-1. Numbered
-2. List
+- Thanks to [MontPt](https://github.com/Monpt7) for the domain name
+- Thanks to [ETNA](https://etna.io/) for giving me an interesting issue to address
+- Thanks to [Doom](https://github.com/doom/) for being so supportive
 
-**Bold** and _Italic_ and `Code` text
+### What you can do for isetnadown.com
 
-[Link](url) and ![Image](src)
-```
+From now on, there are two options:
+- either you run this website locally
+- or you can contact me (using a github issue) if you want me to use your credits to make isetnadown great again
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+In any case, that was a really nice experience and I hope somebody will take care of this project when I'll be done with my studies.
 
-### Jekyll Themes
+Cheers,
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/tbobm/odin/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+_Bob_
